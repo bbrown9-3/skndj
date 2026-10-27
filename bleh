@@ -1,0 +1,82 @@
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    vector<string> toDoList =
+    {
+        "wash clothes",
+        "DANCE the night away",
+        "etc."
+    };
+
+    int choice;
+    string task;
+    int taskNumber;
+
+    while (true)
+    {
+        cout << "\n===== TO DO LIST =====" << endl;
+        cout << "1. Display tasks" << endl;
+        cout << "2. Add task" << endl;
+        cout << "3. Remove task" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        if (choice == 1)
+        {
+            cout << "\nYour Tasks:" << endl;
+
+            for (int i = 0; i < toDoList.size(); i++)
+            {
+                cout << i + 1 << ". "
+                     << toDoList[i] << endl;
+            }
+        }
+        else if (choice == 2)
+        {
+            cout << "Enter a task: ";
+            cin.ignore();
+            getline(cin, task);
+
+            toDoList.push_back(task);
+
+            cout << "Task added!" << endl;
+        }
+        else if (choice == 3)
+        {
+            cout << "\nEnter the task number to remove: ";
+            cin >> taskNumber;
+
+            if (taskNumber >= 1 &&
+                taskNumber <= toDoList.size())
+            {
+                toDoList.erase(
+                    toDoList.begin() + taskNumber - 1
+                );
+
+                cout << "Task removed!" << endl;
+            }
+            else
+            {
+                cout << "Invalid task number!" << endl;
+            }
+        }
+        else if (choice == 4)
+        {
+            cout << "Goodbye!" << endl;
+            break;
+        }
+        else
+        {
+            cout << "Invalid choice. Try again." << endl;
+        }
+    }
+
+    return 0;
+}
